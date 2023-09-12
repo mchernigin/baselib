@@ -18,7 +18,7 @@
 **
 ***********************************************************************************************************************/
 
-#include "consolelogger.h"
+#include "logger/consolelogger.h"
 
 #include <cstring>
 #include <fstream>

@@ -18,49 +18,28 @@
 **
 ***********************************************************************************************************************/
 
-#include "sysloglogger.h"
-
-#include <sstream>
-#include <syslog.h>
+#include "logger/logger.h"
 
 namespace base
 {
 namespace logger
 {
-SyslogLogger::SyslogLogger()
+void Logger::setLogLevel(QtMsgType level)
 {
-    openlog("gpui-main", (LOG_CONS | LOG_PERROR | LOG_PID), LOG_DAEMON);
+    this->minLogLevel = level;
 }
 
-SyslogLogger::~SyslogLogger()
+bool Logger::isLogLevel(QtMsgType level)
 {
-    closelog();
+    return level >= this->minLogLevel;
 }
 
-void SyslogLogger::log(const LoggerMessage &message)
+void Logger::logMessage(const LoggerMessage &message)
 {
-    const char *prefix = this->logLevelMap.at(message.msgType);
-
-    int logFlag = LOG_DEBUG;
-    switch (message.msgType)
+    if (isLogLevel(message.msgType))
     {
-    case QtInfoMsg:
-        logFlag = LOG_INFO;
-        break;
-    case QtWarningMsg:
-        logFlag = LOG_WARNING;
-        break;
-    case QtCriticalMsg:
-        logFlag = LOG_ERR;
-        break;
-    case QtFatalMsg:
-        logFlag = LOG_CRIT;
-        break;
-    default:
-        break;
+        log(message);
     }
-
-    syslog(logFlag, "%s: %s (%s:%u)", prefix, message.message.c_str(), message.filePath.c_str(), message.line);
 }
 } // namespace logger
 } // namespace base
