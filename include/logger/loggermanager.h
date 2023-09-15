@@ -56,11 +56,10 @@ public:
              const std::string &function,
              const uint32_t line);
 
-
-    template <typename T>
-    void addLogger(const QtMsgType &level)
+    template <typename T, typename... Args>
+    void addLogger(const QtMsgType &level, Args... args)
     {
-        auto logger = std::make_shared<T>();
+        auto logger = std::make_shared<T>(args...);
         logger->setLogLevel(level);
         this->addLogger(logger);
     }
