@@ -18,7 +18,7 @@
 **
 ***********************************************************************************************************************/
 
-#include "logger/loggermanager.h"
+#include "loggermanager.h"
 
 #include <algorithm>
 #include <iostream>

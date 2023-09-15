@@ -18,7 +18,7 @@
 **
 ***********************************************************************************************************************/
 
-#include "logger/sysloglogger.h"
+#include "sysloglogger.h"
 
 #include <sstream>
 #include <syslog.h>
