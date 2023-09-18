@@ -27,9 +27,9 @@ namespace base
 {
 namespace logger
 {
-SyslogLogger::SyslogLogger()
+SyslogLogger::SyslogLogger(const char *appName)
 {
-    openlog("gpui-main", (LOG_CONS | LOG_PID), LOG_DAEMON);
+    openlog(appName, (LOG_CONS | LOG_PID), LOG_DAEMON);
 }
 
 SyslogLogger::~SyslogLogger()

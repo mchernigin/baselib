@@ -18,54 +18,35 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_ABSTRACT_LOGGER_H
-#define BASELIB_ABSTRACT_LOGGER_H
-
-#include "../base.h"
 #include "loggermessage.h"
-
-#include <fstream>
-#include <unordered_map>
-#include <QtMsgHandler>
-
-#define LOG_LEVEL_DISABLED static_cast<QtMsgType>(-1)
 
 namespace base
 {
 namespace logger
 {
-class BASELIB_CORE_EXPORT Logger
+LoggerMessage::LoggerMessage(const QtMsgType &msgType_,
+                             std::string message_,
+                             std::string filePath_,
+                             std::string functionName_,
+                             const uint32_t line_,
+                             const std::tm &time_,
+                             const std::thread::id &threadId_)
+    : msgType(msgType_)
+    , message(std::move(message_))
+    , filePath(std::move(filePath_))
+    , functionName(std::move(functionName_))
+    , line(line_)
+    , time(time_)
+    , threadId(threadId_)
+{}
+
+std::string LoggerMessage::getTimeFormatted(const char *format) const
 {
-public:
-    Logger()          = default;
-    virtual ~Logger() = default;
+    std::stringstream buffer;
+    buffer << std::put_time(&this->time, format);
 
-    void setLogLevel(QtMsgType level);
-    bool isLogLevel(QtMsgType level);
-
-    void logMessage(const LoggerMessage &message);
-
-public:
-    Logger(const Logger &) = delete;            // copy ctor
-    Logger(Logger &&)      = delete;            // move ctor
-    Logger &operator=(const Logger &) = delete; // copy assignment
-    Logger &operator=(Logger &&) = delete;      // move assignment
-
-private:
-    virtual void log(const LoggerMessage &message) = 0;
-
-    QtMsgType minLogLevel = QtDebugMsg;
-
-protected:
-    const std::unordered_map<QtMsgType, const char *> logLevelMap = {
-        {QtDebugMsg, "DEBUG"},
-        {QtInfoMsg, "INFO"},
-        {QtWarningMsg, "WARNING"},
-        {QtCriticalMsg, "CRITICAL"},
-        {QtFatalMsg, "FATAL"},
-    };
-};
+    return buffer.str();
+}
 } // namespace logger
 } // namespace base
 
-#endif // BASELIB_ABSTRACT_LOGGER_H

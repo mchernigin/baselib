@@ -24,6 +24,10 @@
 #include <ctime>
 #include <string>
 #include <thread>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
 
 #include <QtMsgHandler>
 
@@ -34,32 +38,15 @@ namespace logger
 class LoggerMessage
 {
 public:
-    LoggerMessage(const QtMsgType &msgType_,
-                  const std::string &message_,
-                  const std::string &filePath_,
-                  const std::string &functionName_,
-                  const uint32_t line_,
-                  const std::tm &time_,
-                  const std::thread::id &threadId_)
-        : msgType(msgType_)
-        , message(message_)
-        , filePath(filePath_)
-        , functionName(functionName_)
-        , line(line_)
-        , time(time_)
-        , threadId(threadId_)
-    {}
+    LoggerMessage(const QtMsgType &msgType,
+                  std::string message,
+                  std::string filePath,
+                  std::string functionName,
+                  const uint32_t line,
+                  const std::tm &time,
+                  const std::thread::id &threadId);
 
-    std::string getTimeFormatted(const char *format) const
-    {
-        char timeString[50];
-        // NOTE(mchernigin): do all compilers actually support this?
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wformat-nonliteral"
-        strftime(timeString, 50, format, &time);
-#pragma GCC diagnostic pop
-        return std::string(timeString);
-    }
+    std::string getTimeFormatted(const char *format) const;
 
     const QtMsgType &msgType;
     const std::string message;

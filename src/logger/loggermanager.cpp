@@ -25,7 +25,7 @@
 
 static std::tm getCurrentTime()
 {
-    time_t time;
+    time_t time = 0;
     std::time(&time);
 
     // NOTE: localtime returns a pointer to a statically allocated object

@@ -2,6 +2,7 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 
 add_library(logger SHARED
   loggermanager.cpp
+  loggermessage.cpp
   logger.cpp
   consolelogger.cpp
   filelogger.cpp

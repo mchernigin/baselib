@@ -64,7 +64,7 @@ public:
         this->addLogger(logger);
     }
 
-private:
+public:
     LoggerManager(const LoggerManager &) = delete;            // copy ctor
     LoggerManager(LoggerManager &&)      = delete;            // move ctor
     LoggerManager &operator=(const LoggerManager &) = delete; // copy assignment

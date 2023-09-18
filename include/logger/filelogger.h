@@ -35,7 +35,13 @@ class BASELIB_CORE_EXPORT FileLogger : public Logger
 {
 public:
     explicit FileLogger(const char *folderName, const char *fileName);
-    ~FileLogger();
+    ~FileLogger() override;
+
+public:
+    FileLogger(const FileLogger &) = delete;            // copy ctor
+    FileLogger(FileLogger &&)      = delete;            // move ctor
+    FileLogger &operator=(const FileLogger &) = delete; // copy assignment
+    FileLogger &operator=(FileLogger &&) = delete;      // move assignment
 
 private:
     void log(const LoggerMessage &message) override;

@@ -32,7 +32,7 @@ static bool checkColorSupport(int fd)
     bool is_tty      = isatty(fd);
     const char *TERM = std::getenv("TERM");
 
-    return is_tty && TERM != NULL && strcmp(TERM, "dumb") != 0;
+    return is_tty && TERM != nullptr && strcmp(TERM, "dumb") != 0;
 }
 
 static std::string colorize(const std::string &text, const char *params)
@@ -45,9 +45,8 @@ namespace base
 namespace logger
 {
 ConsoleLogger::ConsoleLogger()
-{
-    this->hasColorSupport = checkColorSupport(STDERR_FILENO);
-}
+    : hasColorSupport(checkColorSupport(STDERR_FILENO))
+{}
 
 void ConsoleLogger::log(const LoggerMessage &message)
 {
