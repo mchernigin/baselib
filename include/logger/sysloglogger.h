@@ -34,8 +34,14 @@ namespace logger
 class BASELIB_CORE_EXPORT SyslogLogger : public Logger
 {
 public:
-    SyslogLogger();
-    ~SyslogLogger();
+    SyslogLogger(const char *appName);
+    ~SyslogLogger() override;
+
+public:
+    SyslogLogger(const SyslogLogger &) = delete;            // copy ctor
+    SyslogLogger(SyslogLogger &&)      = delete;            // move ctor
+    SyslogLogger &operator=(const SyslogLogger &) = delete; // copy assignment
+    SyslogLogger &operator=(SyslogLogger &&) = delete;      // move assignment
 
 private:
     void log(const LoggerMessage &message) override;

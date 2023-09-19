@@ -56,7 +56,7 @@ void FileLogger::log(const LoggerMessage &message)
 std::string FileLogger::getHomeDir()
 {
     const char *HOME = getenv("HOME");
-    if (HOME != NULL)
+    if (HOME != nullptr)
     {
         return HOME;
     }
@@ -68,12 +68,12 @@ std::string FileLogger::getHomeDir()
     }
 
     char *resultBuf = new char[bufsize];
-    passwd pwd;
-    passwd *result;
+    passwd pwd{};
+    passwd *result = nullptr;
     getpwuid_r(getuid(), &pwd, resultBuf, bufsize, &result);
 
     std::string homeDir;
-    if (result != NULL)
+    if (result != nullptr)
     {
         homeDir = result->pw_dir;
     }
@@ -90,7 +90,7 @@ std::string FileLogger::getHomeDir()
 
 bool FileLogger::ensureDir(const char *path)
 {
-    struct stat sb;
+    struct stat sb{};
     if (stat(path, &sb) != 0 && mkdir(path, 0750) != 0)
     {
         std::cerr << "FileLogger Error: Cannot create log directory (" << path << ")" << std::endl;

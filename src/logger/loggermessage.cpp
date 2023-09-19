@@ -18,40 +18,37 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_FILE_LOGGER_H
-#define BASELIB_FILE_LOGGER_H
-
-#include "logger.h"
 #include "loggermessage.h"
-#include "../base.h"
 
-#include <fstream>
+#include <iomanip>
 
 namespace base
 {
 namespace logger
 {
-class BASELIB_CORE_EXPORT FileLogger : public Logger
+LoggerMessage::LoggerMessage(const QtMsgType &msgType_,
+                             std::string message_,
+                             std::string filePath_,
+                             std::string functionName_,
+                             const uint32_t line_,
+                             const std::tm &time_,
+                             const std::thread::id &threadId_)
+    : msgType(msgType_)
+    , message(std::move(message_))
+    , filePath(std::move(filePath_))
+    , functionName(std::move(functionName_))
+    , line(line_)
+    , time(time_)
+    , threadId(threadId_)
+{}
+
+std::string LoggerMessage::getTimeFormatted(const char *format) const
 {
-public:
-    explicit FileLogger(const char *folderName, const char *fileName);
-    ~FileLogger() override;
+    std::stringstream buffer;
+    buffer << std::put_time(&this->time, format);
 
-public:
-    FileLogger(const FileLogger &) = delete;            // copy ctor
-    FileLogger(FileLogger &&)      = delete;            // move ctor
-    FileLogger &operator=(const FileLogger &) = delete; // copy assignment
-    FileLogger &operator=(FileLogger &&) = delete;      // move assignment
-
-private:
-    void log(const LoggerMessage &message) override;
-
-    static std::string getHomeDir();
-    static bool ensureDir(const char *path);
-
-    std::fstream logFileStream = {};
-};
+    return buffer.str();
+}
 } // namespace logger
 } // namespace base
 
-#endif // BASELIB_FILE_LOGGER_H

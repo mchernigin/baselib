@@ -26,6 +26,7 @@
 
 #include <fstream>
 #include <unordered_map>
+
 #include <QtMsgHandler>
 
 #define LOG_LEVEL_DISABLED static_cast<QtMsgType>(-1)
@@ -45,7 +46,7 @@ public:
 
     void logMessage(const LoggerMessage &message);
 
-private:
+public:
     Logger(const Logger &) = delete;            // copy ctor
     Logger(Logger &&)      = delete;            // move ctor
     Logger &operator=(const Logger &) = delete; // copy assignment
