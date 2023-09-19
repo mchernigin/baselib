@@ -26,6 +26,7 @@
 
 #include <fstream>
 #include <unordered_map>
+
 #include <QtMsgHandler>
 
 #define LOG_LEVEL_DISABLED static_cast<QtMsgType>(-1)

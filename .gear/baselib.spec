@@ -30,9 +30,8 @@ Common BaseALT projects library
 
 %files
 %_includedir/%name/
-%_libdir/libbaselib.so
-%_libdir/libbaselib.so.0.0.1
-%_libdir/libbaselib.so.1
+%_libdir/liblogger.so
+%_libdir/cmake
 
 %changelog
 * Wed Sep 13 2023 Michael Chernigin <chernigin@altlinux.org> 0.0.1-alt1

@@ -20,6 +20,8 @@
 
 #include "loggermessage.h"
 
+#include <iomanip>
+
 namespace base
 {
 namespace logger

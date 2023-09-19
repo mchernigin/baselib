@@ -24,10 +24,6 @@
 #include <ctime>
 #include <string>
 #include <thread>
-#include <utility>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
 
 #include <QtMsgHandler>
 
