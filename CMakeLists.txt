@@ -6,6 +6,7 @@ project(baselib
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include(GNUInstallDirs)
+include(CheckCXXCompilerFlag)
 
 add_subdirectory(src)
 
