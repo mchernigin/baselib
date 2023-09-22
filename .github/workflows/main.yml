@@ -37,3 +37,7 @@ jobs:
       artifact: ${{ matrix.os.artifact }}
       architecture: ${{ matrix.architecture }}
 
+  baselib-publish-api-docs:
+    uses: ./.github/workflows/publish-api-docs.yml
+    needs: [ baselib-build ]
+    secrets: inherit
