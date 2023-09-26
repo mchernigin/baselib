@@ -1,9 +1,9 @@
-name: baselib-publish-api-doc
+name: qbase-publish-api-doc
 
 on: [ workflow_call, workflow_dispatch ]
 
 jobs:
-  baselib-publish-api-doc:
+  qbase-publish-api-doc:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
@@ -22,7 +22,7 @@ jobs:
 
       - name: Add generated autodocs to Git repo in the documentation branch
         run:  |
-          git config --global user.email "baselib-github-bot@basealt.ru"
+          git config --global user.email "qbase-github-bot@basealt.ru"
           git config --global user.name  "$GITHUB_WORKFLOW GitHub action"
           git add -f docs
           git commit -am "docs: add auto-generated developer documentation"

@@ -1,4 +1,4 @@
-name: baselib-build
+name: qbase-build
 
 on:
   workflow_call:
@@ -13,29 +13,29 @@ on:
         required: true
 
 jobs:
-  baselib-build:
+  qbase-build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Build baselib packages
+    - name: Build qbase packages
       run: |
         docker pull --platform linux/${{ inputs.architecture }} \
           ghcr.io/${{ github.repository }}-${{ inputs.architecture }}:latest
-        docker run --privileged=true --name baselib-build-${{ inputs.architecture }} -i --log-driver=none \
+        docker run --privileged=true --name qbase-build-${{ inputs.architecture }} -i --log-driver=none \
         -a stdin -a stdout -a stderr -v "$(pwd)":/app --platform linux/${{ inputs.architecture }} \
         ghcr.io/${{ github.repository }}-${{ inputs.architecture }}:latest
 
     - name: Extract fresh packages
       if: github.ref == 'refs/heads/master'
       run: |
-        docker cp baselib-build-${{ inputs.architecture }}:/home/builder2/RPM/RPMS/ "$(pwd)/packages"
+        docker cp qbase-build-${{ inputs.architecture }}:/home/builder2/RPM/RPMS/ "$(pwd)/packages"
 
     - name: Upload fresh RPM packages
       if: github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v3
       with:
-        name: baselib-${{ inputs.artifact }}-${{ inputs.architecture }}
+        name: qbase-${{ inputs.artifact }}-${{ inputs.architecture }}
         path: ${{ github.workspace }}/packages
