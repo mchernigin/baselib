@@ -1,2 +1,2 @@
 tar: .
-spec: .gear/baselib.spec
+spec: .gear/libqbase.spec
