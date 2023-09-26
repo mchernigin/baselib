@@ -18,8 +18,8 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_SYSLOG_LOGGER_H
-#define BASELIB_SYSLOG_LOGGER_H
+#ifndef QBASE_SYSLOG_LOGGER_H
+#define QBASE_SYSLOG_LOGGER_H
 
 #include "logger.h"
 #include "loggermessage.h"
@@ -27,11 +27,11 @@
 
 #include <fstream>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
-class BASELIB_CORE_EXPORT SyslogLogger : public Logger
+class QBASE_CORE_EXPORT SyslogLogger : public Logger
 {
 public:
     SyslogLogger(const char *appName);
@@ -47,6 +47,6 @@ private:
     void log(const LoggerMessage &message) override;
 };
 } // namespace logger
-} // namespace base
+} // namespace qbase
 
-#endif // BASELIB_SYSLOG_LOGGER_H
+#endif // QBASE_SYSLOG_LOGGER_H

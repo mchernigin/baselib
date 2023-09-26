@@ -18,8 +18,8 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_LOGGER_MANAGER_H
-#define BASELIB_LOGGER_MANAGER_H
+#ifndef QBASE_LOGGER_MANAGER_H
+#define QBASE_LOGGER_MANAGER_H
 
 #include "../base.h"
 #include "logger.h"
@@ -30,13 +30,13 @@
 
 #include <QString>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
 class LoggerManagerPrivate;
 
-class BASELIB_CORE_EXPORT LoggerManager
+class QBASE_CORE_EXPORT LoggerManager
 {
 public:
     static LoggerManager *globalInstance();
@@ -77,6 +77,6 @@ private:
     LoggerManagerPrivate *d;
 };
 } // namespace logger
-} // namespace base
+} // namespace qbase
 
-#endif // BASELIB_LOGGER_MANAGER_H
+#endif // QBASE_LOGGER_MANAGER_H

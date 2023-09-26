@@ -36,7 +36,7 @@ static std::tm getCurrentTime()
     return *std::localtime(&time);
 }
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -181,4 +181,4 @@ LoggerManager *LoggerManager::globalInstance()
     return loggerInstance();
 }
 } // namespace logger
-} // namespace base
+} // namespace qbase

@@ -1,4 +1,4 @@
-name: baselib-ci
+name: qbase-ci
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  baselib-build-container:
+  qbase-build-container:
     uses: ./.github/workflows/build-container.yml
     secrets: inherit
     strategy:
@@ -24,9 +24,9 @@ jobs:
       distr: ${{ matrix.os.distr }}
       architecture: ${{ matrix.architecture }}
 
-  baselib-build:
+  qbase-build:
     uses: ./.github/workflows/build.yml
-    needs: [ baselib-build-container ]
+    needs: [ qbase-build-container ]
     secrets: inherit
     strategy:
       matrix:
@@ -37,7 +37,7 @@ jobs:
       artifact: ${{ matrix.os.artifact }}
       architecture: ${{ matrix.architecture }}
 
-  baselib-publish-api-docs:
+  qbase-publish-api-docs:
     uses: ./.github/workflows/publish-api-docs.yml
-    needs: [ baselib-build ]
+    needs: [ qbase-build ]
     secrets: inherit

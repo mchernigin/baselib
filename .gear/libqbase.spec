@@ -1,10 +1,10 @@
 %define _unpackaged_files_terminate_build 1
 
-Name: baselib
+Name: libqbase
 Version: 0.0.1
 Release: alt1
 
-Summary: Common BaseALT projects library.
+Summary: Common BaseALT Qt projects library.
 License: GPLv2+
 Group: Other
 Url: https://github.com/mchernigin/baselib
@@ -15,8 +15,10 @@ BuildRequires: qt5-base-common qt5-base-devel qt5-declarative-devel qt5-tools-de
 
 Source0: %name-%version.tar
 
+%global target_name qbase
+
 %description
-Common BaseALT projects library
+Common BaseALT Qt projects library
 
 %prep
 %setup -q
@@ -29,8 +31,8 @@ Common BaseALT projects library
 %cmakeinstall_std
 
 %files
-%_includedir/%name/
-%_libdir/liblogger.so
+%_includedir/%target_name/
+%_libdir/*.so
 %_libdir/cmake
 
 %changelog

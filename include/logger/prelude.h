@@ -18,8 +18,8 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_LOGGERS_H
-#define BASELIB_LOGGERS_H
+#ifndef QBASE_PRELUDE_H
+#define QBASE_PRELUDE_H
 
 #include "loggermanager.h"
 
@@ -27,4 +27,4 @@
 #include "filelogger.h"
 #include "sysloglogger.h"
 
-#endif // BASELIB_LOGGERS_H
+#endif // QBASE_PRELUDE_H

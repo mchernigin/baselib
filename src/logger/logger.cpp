@@ -20,7 +20,7 @@
 
 #include "logger.h"
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -63,4 +63,4 @@ void Logger::logMessage(const LoggerMessage &message)
     }
 }
 } // namespace logger
-} // namespace base
+} // namespace qbase

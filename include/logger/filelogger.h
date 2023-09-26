@@ -18,8 +18,8 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_FILE_LOGGER_H
-#define BASELIB_FILE_LOGGER_H
+#ifndef QBASE_FILE_LOGGER_H
+#define QBASE_FILE_LOGGER_H
 
 #include "logger.h"
 #include "loggermessage.h"
@@ -27,11 +27,11 @@
 
 #include <fstream>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
-class BASELIB_CORE_EXPORT FileLogger : public Logger
+class QBASE_CORE_EXPORT FileLogger : public Logger
 {
 public:
     explicit FileLogger(const char *folderName, const char *fileName);
@@ -52,6 +52,6 @@ private:
     std::fstream logFileStream = {};
 };
 } // namespace logger
-} // namespace base
+} // namespace qbase
 
-#endif // BASELIB_FILE_LOGGER_H
+#endif // QBASE_FILE_LOGGER_H

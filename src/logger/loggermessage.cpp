@@ -22,7 +22,7 @@
 
 #include <iomanip>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -50,5 +50,5 @@ std::string LoggerMessage::getTimeFormatted(const char *format) const
     return buffer.str();
 }
 } // namespace logger
-} // namespace base
+} // namespace qbase
 

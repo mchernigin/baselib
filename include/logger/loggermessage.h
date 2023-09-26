@@ -18,8 +18,8 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_LOGGER_MESSAGE_H
-#define BASELIB_LOGGER_MESSAGE_H
+#ifndef QBASE_LOGGER_MESSAGE_H
+#define QBASE_LOGGER_MESSAGE_H
 
 #include <ctime>
 #include <string>
@@ -27,7 +27,7 @@
 
 #include <QtMsgHandler>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -53,6 +53,6 @@ public:
     const std::thread::id threadId;
 };
 } // namespace logger
-} // namespace base
+} // namespace qbase
 
-#endif // BASELIB_LOGGER_MESSAGE_H
+#endif // QBASE_LOGGER_MESSAGE_H
