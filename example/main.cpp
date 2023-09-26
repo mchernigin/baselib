@@ -1,14 +1,14 @@
-#include <baselib/logger/prelude.h>
+#include <qbase/logger/prelude.h>
 #include <QCoreApplication>
 #include <QDebug>
 
-int main(int argc, char *argv[])
+int main()
 {
-    auto loggerManager = base::logger::LoggerManager::globalInstance();
+    auto loggerManager = qbase::logger::LoggerManager::globalInstance();
 
-    loggerManager->addLogger<base::logger::ConsoleLogger>(QtDebugMsg);
-    loggerManager->addLogger<base::logger::FileLogger>(QtWarningMsg, "appname", "appname.log");
-    loggerManager->addLogger<base::logger::SyslogLogger>(LOG_LEVEL_DISABLED, "appname");
+    loggerManager->addLogger<qbase::logger::ConsoleLogger>(QtDebugMsg);
+    loggerManager->addLogger<qbase::logger::FileLogger>(QtWarningMsg, "appname", "appname.log");
+    loggerManager->addLogger<qbase::logger::SyslogLogger>(LOG_LEVEL_DISABLED, "appname");
 
     qDebug() << "Hello?";
     qInfo() << "Hello?";

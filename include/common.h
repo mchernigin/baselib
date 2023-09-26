@@ -18,22 +18,22 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_COMMON_H
-#define BASELIB_COMMON_H
+#ifndef QBASE_COMMON_H
+#define QBASE_COMMON_H
 
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32) || defined(__CYGWIN__)
-#define BASELIB_SYMBOL_EXPORT __attribute__((__dllexport__))
-#define BASELIB_SYMBOL_IMPORT __attribute__((__dllimport__))
+#define QBASE_SYMBOL_EXPORT __attribute__((__dllexport__))
+#define QBASE_SYMBOL_IMPORT __attribute__((__dllimport__))
 #else
 
 #if defined (__LCC__)
-#define BASELIB_SYMBOL_EXPORT
+#define QBASE_SYMBOL_EXPORT
 #else
-#define BASELIB_SYMBOL_EXPORT __attribute__((__visibility__("default")))
+#define QBASE_SYMBOL_EXPORT __attribute__((__visibility__("default")))
 #endif
 
-#define BASELIB_SYMBOL_IMPORT
+#define QBASE_SYMBOL_IMPORT
 #endif
 
-#endif // BASELIB_COMMON_H
+#endif // QBASE_COMMON_H
 

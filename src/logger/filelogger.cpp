@@ -26,7 +26,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -137,4 +137,4 @@ bool FileLogger::ensureDir(const char *path)
     return true;
 }
 } // namespace logger
-} // namespace base
+} // namespace qbase

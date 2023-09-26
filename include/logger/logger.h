@@ -18,8 +18,8 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_ABSTRACT_LOGGER_H
-#define BASELIB_ABSTRACT_LOGGER_H
+#ifndef QBASE_LOGGER_H
+#define QBASE_LOGGER_H
 
 #include "../base.h"
 #include "loggermessage.h"
@@ -31,11 +31,11 @@
 
 #define LOG_LEVEL_DISABLED static_cast<QtMsgType>(-1)
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
-class BASELIB_CORE_EXPORT Logger
+class QBASE_CORE_EXPORT Logger
 {
 public:
     Logger()          = default;
@@ -67,6 +67,6 @@ protected:
     };
 };
 } // namespace logger
-} // namespace base
+} // namespace qbase
 
-#endif // BASELIB_ABSTRACT_LOGGER_H
+#endif // QBASE_LOGGER_H

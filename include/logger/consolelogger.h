@@ -18,18 +18,18 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_CONSOLE_LOGGER_H
-#define BASELIB_CONSOLE_LOGGER_H
+#ifndef QBASE_CONSOLE_LOGGER_H
+#define QBASE_CONSOLE_LOGGER_H
 
 #include "logger.h"
 #include "loggermessage.h"
 #include "../base.h"
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
-class BASELIB_CORE_EXPORT ConsoleLogger : public Logger
+class QBASE_CORE_EXPORT ConsoleLogger : public Logger
 {
 public:
     ConsoleLogger();
@@ -40,6 +40,6 @@ private:
     bool hasColorSupport = false;
 };
 } // namespace logger
-} // namespace base
+} // namespace qbase
 
-#endif // BASELIB_CONSOLE_LOGGER_H
+#endif // QBASE_CONSOLE_LOGGER_H

@@ -18,15 +18,15 @@
 **
 ***********************************************************************************************************************/
 
-#ifndef BASELIB_BASE_H
-#define BASELIB_BASE_H
+#ifndef QBASE_BASE_H
+#define QBASE_BASE_H
 
 #include "common.h"
 
-#ifdef BASELIB_CORE_LIBRARY
-#define BASELIB_CORE_EXPORT BASELIB_SYMBOL_EXPORT
+#ifdef QBASE_CORE_LIBRARY
+#define QBASE_CORE_EXPORT QBASE_SYMBOL_EXPORT
 #else
-#define BASELIB_CORE_EXPORT BASELIB_SYMBOL_IMPORT
+#define QBASE_CORE_EXPORT QBASE_SYMBOL_IMPORT
 #endif
 
-#endif // BASELIB_BASE_H
+#endif // QBASE_BASE_H

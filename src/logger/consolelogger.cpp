@@ -51,7 +51,7 @@ static std::string colorize(const std::string &text, const char *params)
     return std::string("\033[") + params + "m" + text + "\033[0m";
 }
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -109,4 +109,4 @@ void ConsoleLogger::log(const LoggerMessage &message)
               << message.filePath << ":" << message.line << ")" << std::endl;
 }
 } // namespace logger
-} // namespace base
+} // namespace qbase

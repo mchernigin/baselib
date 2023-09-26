@@ -23,7 +23,7 @@
 #include <sstream>
 #include <syslog.h>
 
-namespace base
+namespace qbase
 {
 namespace logger
 {
@@ -83,4 +83,4 @@ void SyslogLogger::log(const LoggerMessage &message)
     syslog(logFlag, "%s: %s (%s:%u)", prefix, message.message.c_str(), message.filePath.c_str(), message.line);
 }
 } // namespace logger
-} // namespace base
+} // namespace qbase
