@@ -1,4 +1,3 @@
-# set compiler options
 if (CMAKE_COMPILER_IS_GNUCXX AND NOT WIN32)
   if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "e2k")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-undef -fvisibility=default -pedantic -Wall")
@@ -16,5 +15,36 @@ if (CMAKE_COMPILER_IS_GNUCXX AND NOT WIN32)
     endif()
   endif()
 endif()
+
+
+macro(add_qbase_library name)
+  add_library(${name} SHARED ${ARGN})
+
+  # Set include dir for library
+  target_include_directories(${name} PUBLIC
+      "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/${name}/>"
+      "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
+
+  # Add prefix for output library
+  set_target_properties(${name} PROPERTIES OUTPUT_NAME qbase-${name})
+
+  # Install library
+  install(
+    TARGETS ${name}
+    EXPORT ${name}-config
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+  # Install header files
+  install(
+    DIRECTORY "${CMAKE_SOURCE_DIR}/include/${name}/"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${name}/")
+
+  # Install CMake config files
+  install(
+    EXPORT ${name}-config
+    NAMESPACE "${PROJECT_NAME}::"
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+endmacro(add_qbase_library)
+
 
 add_subdirectory(logger)
