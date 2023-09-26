@@ -55,7 +55,7 @@ RUN apt-get update \
 # Copies your code file from your action repository to the filesystem path `/` of the container
 # COPY script/build.sh /build.sh
 
-RUN echo -e "#!/bin/sh -ex\nchown -R builder2 /app/\ncd /app/ && gear-rpm -ba" \
+RUN echo -e "#!/bin/sh -ex\nexport TMPDIR=/home/builder2/tmp\nchown -R builder2 /app/\ncd /app/ && gear-rpm -ba" \
          > /build.sh \
     && chmod +x ./build.sh
 
@@ -67,6 +67,8 @@ RUN if [ "$ARCH" = "i386" ]; then \
 
 USER builder2
 WORKDIR /home/builder2
+
+RUN mkdir tmp
 
 # Code file to execute when the docker container starts up (`build.sh`)
 ENTRYPOINT ["/build.sh"]
