@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test-ci'
         uses: actions/checkout@v3
 
       - name: Login to GitHub Container Registry
@@ -27,7 +27,7 @@ jobs:
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.github_token }}
 
       - name: Build container
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test-ci'
         run: |
           docker buildx build -t ghcr.io/${{ github.repository }}-${{ inputs.architecture }}:${{ github.run_number }} \
           -t ghcr.io/${{ github.repository }}-${{ inputs.architecture }}:latest \
@@ -37,6 +37,6 @@ jobs:
           --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) --platform ${{ inputs.architecture }} .
 
       - name: Push container
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test-ci'
         run: |
           docker push -a ghcr.io/${{ github.repository }}-${{ inputs.architecture }}
