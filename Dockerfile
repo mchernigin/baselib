@@ -1,13 +1,13 @@
 ARG DISTR
 
-# Container image that runs your code
 FROM $DISTR
 
 ARG USER_ID
 ARG GROUP_ID
 
 RUN apt-get update \
-    && apt-get install -y git \
+    && apt-get install -y \
+    git \
     gear \
     hasher \
     hasher-priv \
@@ -28,8 +28,6 @@ RUN apt-get update \
     qt5-base-devel \
     qt5-declarative-devel \
     qt5-tools-devel \
-    libsmbclient-devel \
-    libsmbclient \
     qt5-base-common \
     doxygen \
     xorg-xvfb \
@@ -52,23 +50,17 @@ RUN apt-get update \
     && mkdir /app \
     && chown $USER_ID:$GROUP_ID /app
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-# COPY script/build.sh /build.sh
+USER builder2
+RUN mkdir /home/builder2/tmp
+ENV TMPDIR=/home/builder2/tmp
 
-RUN echo -e "#!/bin/sh -ex\nexport TMPDIR=/home/builder2/tmp\nchown -R builder2 /app/\ncd /app/ && gear-rpm -ba" \
-         > /build.sh \
-    && chmod +x ./build.sh
+RUN chown -R builder2 /app/
+WORKDIR /app/
 
 ARG ARCH
 
-RUN if [ "$ARCH" = "i386" ]; then \
-        sed -i 's/gear-rpm -ba/gear-rpm -ba --target=i386/g' build.sh; \
+CMD if [ "$ARCH" = "i386" ]; then \
+        "gear-rpm -ba" \
+    else \
+        "gear-rpm -ba --target=i386" \
     fi
-
-USER builder2
-WORKDIR /home/builder2
-
-RUN mkdir tmp
-
-# Code file to execute when the docker container starts up (`build.sh`)
-ENTRYPOINT ["/build.sh"]
